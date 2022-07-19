@@ -1,9 +1,7 @@
 package products;
 
-import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @ToString
 public class Product {
     private int price;

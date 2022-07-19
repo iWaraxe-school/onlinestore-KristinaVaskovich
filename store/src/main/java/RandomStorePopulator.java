@@ -4,8 +4,7 @@ import products.Product;
 import java.util.ArrayList;
 
 public class RandomStorePopulator {
-    public static Category fillListOfProducts(int numberOfItems) {
-        Category category = null;
+    public static Category fillListOfProducts(Category category, int numberOfItems) {
         ArrayList<Product> products = new ArrayList<>();
         Faker faker = new Faker();
         for (int i = 0; i < numberOfItems; i++) {

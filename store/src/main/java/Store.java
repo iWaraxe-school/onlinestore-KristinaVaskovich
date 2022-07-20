@@ -1,15 +1,18 @@
 import categories.Category;
+import helpers.RandomCategoryPopulator;
+import helpers.RandomStorePopulator;
 import lombok.Getter;
 import lombok.ToString;
-import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 @Getter
 public class Store {
-    private ArrayList<Category> categoryArrayList = new ArrayList<>();
-
-    private ArrayList<Category> fillList(Category category, int numberOfItems) {
-        categoryArrayList.add(RandomStorePopulator.fillCategoryWithProducts(category, numberOfItems));
-        return categoryArrayList;
+    public List<Category> fillStore(int numberOfItemsInCategory) {
+        List<Category> categoryList = RandomStorePopulator.fillStoreWithCategories();
+        for (Category category : categoryList) {
+            category.setProducts(RandomCategoryPopulator.fillCategoryWithProducts(category, numberOfItemsInCategory));
+        }
+        return categoryList;
     }
 }

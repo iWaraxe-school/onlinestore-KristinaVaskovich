@@ -2,19 +2,27 @@ package categories;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import products.Product;
+
 import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
-@ToString
-public class Category {
+public abstract class Category {
     private String name;
-    private ArrayList<Product> products;
+    private List<Product> products;
 
-    protected Category(String name, ArrayList<Product> products) {
+    public Category(String name) {
         this.name = name;
-        this.products = products;
+        this.products = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "\n=========================================\n" +
+                "CATEGORY: " +
+                "'" + name + '\''
+                + products + "\n=========================================\n";
     }
 }

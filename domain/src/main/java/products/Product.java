@@ -1,8 +1,5 @@
 package products;
 
-import lombok.ToString;
-
-@ToString
 public class Product {
     private int price;
     private String name;
@@ -12,5 +9,13 @@ public class Product {
         this.price = price;
         this.name = name;
         this.rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return '\n' + "Product " +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", rate=" + rate;
     }
 }

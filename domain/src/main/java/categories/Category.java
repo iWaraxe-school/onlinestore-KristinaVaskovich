@@ -3,7 +3,6 @@ package categories;
 import lombok.Getter;
 import lombok.Setter;
 import products.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 

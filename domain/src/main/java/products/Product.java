@@ -1,5 +1,8 @@
 package products;
 
+import lombok.Getter;
+
+@Getter
 public class Product {
     private int price;
     private String name;

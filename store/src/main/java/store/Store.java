@@ -1,8 +1,9 @@
+package store;
+
 import categories.Category;
 import helpers.RandomCategoryPopulator;
 import helpers.RandomStorePopulator;
 import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -11,8 +11,8 @@ public class RandomCategoryPopulator {
         List<Product> products = new ArrayList<>();
         Faker faker = new Faker();
         for (int i = 0; i < numberOfItemsInCategory; i++) {
-            int randomNumberFrom0To10 = faker.number().numberBetween(0, 5);
-            int randomNumberFrom0To100 = faker.number().numberBetween(0, 100);
+            int randomNumberFrom0To10 = faker.number().numberBetween(0, 10);
+            int randomNumberFrom0To100 = faker.number().numberBetween(0, 1000);
             switch (category.getName()) {
                 case "Bike":
                     products.add(new Product(randomNumberFrom0To100, faker.aviation().aircraft(), randomNumberFrom0To10));

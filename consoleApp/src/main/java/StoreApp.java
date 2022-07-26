@@ -8,11 +8,11 @@ import java.util.Scanner;
 public class StoreApp {
     public static void main(String[] args) {
         Store store = new Store();
-        store.fillStore(3);
+        store.fillStore(4);
         System.out.println(store);
 
         XMLParser xmlParser = new XMLParser();
-        Map<String, String> map = xmlParser.getMap();
+        Map<String, String> xmlParserMap = xmlParser.getMap();
         Comparator comparator = new Comparator();
 
         Scanner sc = new Scanner(System.in);
@@ -24,12 +24,10 @@ public class StoreApp {
             }
             if (command.equalsIgnoreCase("sort")) {
                 System.out.print("Choose field to sort (");
-                map.keySet().forEach((key) -> {
-                    System.out.print(" " + key);
-                });
+                xmlParserMap.keySet().forEach((key) -> System.out.print(" " + key));
                 System.out.print(" ): ");
                 String fieldToSort = sc.next();
-                System.out.println(comparator.sortStore(fieldToSort, store, map));
+                System.out.println(comparator.sortStore(fieldToSort, store, xmlParserMap));
             }
             if (command.equalsIgnoreCase("top")) {
                 Map<String, String> topPrices = new HashMap<>();
@@ -37,7 +35,5 @@ public class StoreApp {
                 System.out.println(comparator.top5Items("price", store, topPrices));
             }
         }
-
-
     }
 }

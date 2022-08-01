@@ -34,4 +34,6 @@ public class Store {
             category.setProducts(RandomCategoryPopulator.fillCategoryWithProducts(category, numberOfItemsInCategory));
         }
     }
+
+
 }

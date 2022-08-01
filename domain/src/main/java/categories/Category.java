@@ -9,12 +9,16 @@ import java.util.List;
 @Setter
 @Getter
 public abstract class Category {
-    private String name;
+    private CategoryName name;
     private List<Product> products;
 
-    public Category(String name) {
+    public Category(CategoryName name) {
         this.name = name;
         this.products = new ArrayList<>();
+    }
+
+    public CategoryName getName() {
+        return name;
     }
 
     @Override

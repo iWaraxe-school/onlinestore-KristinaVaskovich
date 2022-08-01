@@ -2,6 +2,6 @@ package categories;
 
 public class BikeCategory extends Category {
     public BikeCategory() {
-        super("Bike");
+        super(CategoryName.BIKE);
     }
 }

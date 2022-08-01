@@ -1,3 +1,8 @@
+1.Factory 
+
+2.Singleton
+
+
 # 5. Patterns
 
 ## Materials

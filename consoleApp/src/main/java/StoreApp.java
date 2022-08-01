@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class StoreApp {
     public static void main(String[] args) {
-        Store store = new Store();
+        Store store = Store.getStore();
         store.fillStore(4);
         System.out.println(store);
 

@@ -10,6 +10,17 @@ import java.util.List;
 @Getter
 public class Store {
     private List<Category> categoryList = new ArrayList<>();
+    private static Store store;
+
+    private Store() {
+    }
+
+    public static Store getStore() {
+        if (store == null) {
+            store = new Store();
+        }
+        return store;
+    }
 
     @Override
     public String toString() {

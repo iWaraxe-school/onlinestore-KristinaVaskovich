@@ -1,30 +1,22 @@
-Паттерн - образ, способ того, как мы будем реализовывать ту или иную задачу. Паттерны предлагают нам ряд приницпов для решения проблем при проектированиии.
-Выбрала три паттерна: 
+## 6. Multithreading
 
-1.Factory - реализовала в категориях. Создала класс CategoryFactory, который предполагает создание новой категории. Этот паттерн удобно применить, т.к. вполне возможно, что появятся новые названия категорий товара, и мы будем создавать новые объекты категорий, не создавая новых классов.
+----
+### Materials
 
-2.Singleton - реализовала в классе Store. Этот паттерн гарантирует, что у нас будет единственный экземпляр класса и невозможно будет создать другой магазин.
+[Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
+[L10 from slide 24](https://coherentsolutions.sharepoint.com/sites/training-center/_layouts/15/WopiFrame.aspx?sourcedoc=%7b64853C24-C830-4C50-B8B4-723AFC490668%7d&file=L10.pptx&action=default) 
+[L11 from](https://coherentsolutions.sharepoint.com/sites/training-center/_layouts/15/WopiFrame.aspx?sourcedoc=%7b0D5F5DD0-CBDE-4EB7-8D17-CDEC874B3F64%7d&file=L11.pptx&action=default) 
 
-3.Command - реализовалаа в пакете commands. Этот паттерн позволяет инкасулировать запрос на выполнение определенного действия. Я размышляла над тем, чтобы улучшить программу в мейне, которая была у меня написана через сканнер и while c if. Применить паттерн команда показалось логичным - создавать объекты команд для больше подходить под концепцию ООП, я смогу добавлять команды непосредствено в классы команд, и таким образом main будет выглядеть более лаконично.
+### VideoLectures
+- [Multithreading, part 1](https://drive.google.com/file/d/1IwXar_5zJDQ3MeCZ9h0x0FoPrLS3mPRx/view?usp=sharing)
+- [ Multithreading, part 2](https://drive.google.com/file/d/1X8l1DoZaBXlEw4DkceQz8aHqK-dUOltq/view?usp=sharing)
 
-# 5. Patterns
 
-## Materials
+### Task #6
 
-[Patterns](https://refactoring.guru/design-patterns)
+Please implement `create order` functionality. Each order should be processed in separate thread. Whe user select product
+, generate the random int from 1 to 30, and create thread that will process selected order for selected time, and after it
+place the product in another collection (for example, purchased goods).
+And create one more thread, that will be executed periodically, e.g. ones in 2 mins, that will clean up purchased collection.
 
-## VideoLectures
-- [Patterns(part 1)](https://youtu.be/q5U92-p-a0s)
-- [Patterns(part 2)](https://youtu.be/bR7M\_lv52S4)
-
-## Task #5
-Read all materials, try to find a `proper` place to your newly learned patterns in our app. There are a lot of design patterns, but we advise you to pay attention to the following ones:
-- Singleton;
-- ChainOfResponsibility;
-- Fabric.
-The application of patterns consists not only in their implementation, but also in knowing their weaknesses and strengths. Therefore, in addition to realising the selected design patterns in the code, you must write the following justification for each pattern (you can send it to me in the messenger, or you can add text to README.md): 
-- What is the Design Pattern? 
-- Where did you apply it? 
-- Justify why you chose this one and not another. What do you gain by using chosen Design Pattern?
-## Hints
-Rethink your application from SOLID point of view. Keep in mind that in addition to implementing multithreading, we will also work with the database and http. In many ways, we will repeat what we did for the console application for both the database and the http layers. It might be worth coming up with some common interfaces that different versions will implement.
+You can implement this in "native" java methods  but better and simplier to use [java.util.concurrent](https://habr.com/ru/company/luxoft/blog/157273/) package.  

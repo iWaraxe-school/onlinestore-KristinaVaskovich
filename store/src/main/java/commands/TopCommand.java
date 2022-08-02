@@ -1,6 +1,5 @@
-package command;
+package commands;
 
-import sorting.Comparator;
 import store.Store;
 import java.util.Map;
 

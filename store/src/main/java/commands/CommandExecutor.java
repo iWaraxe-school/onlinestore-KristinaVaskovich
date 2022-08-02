@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 public class CommandExecutor {
     private Command chooseSortingCommand;

@@ -1,7 +1,10 @@
-import command.Command;
-import command.CommandExecutor;
-import command.SortCommand;
-import command.TopCommand;
+import categories.Category;
+import categories.CategoryFactory;
+import categories.CategoryName;
+import commands.Command;
+import commands.CommandExecutor;
+import commands.SortCommand;
+import commands.TopCommand;
 import sorting.XMLParser;
 import store.Store;
 import java.util.Map;

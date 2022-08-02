@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 import sorting.Comparator;
 import store.Store;

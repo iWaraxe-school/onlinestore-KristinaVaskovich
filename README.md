@@ -21,6 +21,6 @@ And create one more thread, that will be executed periodically, e.g. ones in 2 m
 
 You can implement this in "native" java methods  but better and simplier to use [java.util.concurrent](https://habr.com/ru/company/luxoft/blog/157273/) package.  
 
-###Hints
+### Hints
 Timer, TimeTask
 timer.schedule(timerTask,0,120000)

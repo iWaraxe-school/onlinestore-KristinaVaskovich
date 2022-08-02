@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 
 public class Comparator {
     public List<Product> sortStore(String field, Store store, Map<String, String> map) {
-        List<Product> productList = store.getCategoryList().stream().map(Category::getProducts).flatMap(Collection::stream).collect(Collectors.toList());
+        List<Product> productList = store.getCategoryList().stream().map(Category::getProducts).
+                flatMap(Collection::stream).collect(Collectors.toList());
         String value = map.get(field);
         try {
             if (value.equalsIgnoreCase("asc")) {

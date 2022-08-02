@@ -4,12 +4,24 @@ import categories.Category;
 import helpers.RandomCategoryPopulator;
 import helpers.RandomStorePopulator;
 import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 public class Store {
     private List<Category> categoryList = new ArrayList<>();
+    private static Store store = null;
+
+    private Store() {
+    }
+
+    public static Store getStore() {
+        if (store == null) {
+            store = new Store();
+        }
+        return store;
+    }
 
     @Override
     public String toString() {
@@ -23,4 +35,6 @@ public class Store {
             category.setProducts(RandomCategoryPopulator.fillCategoryWithProducts(category, numberOfItemsInCategory));
         }
     }
+
+
 }

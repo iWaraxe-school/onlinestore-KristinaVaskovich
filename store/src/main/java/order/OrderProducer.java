@@ -1,6 +1,5 @@
 package order;
 
-import com.github.javafaker.Faker;
 import lombok.SneakyThrows;
 import store.Store;
 

@@ -31,12 +31,11 @@ public class StoreApp {
 
 
         Timer timer = new Timer();
-        int numberOfOrders = 2;
+        int numberOfOrders = 7;
         final TimerTask timerTask1 = new TimerTask() {
             @Override
             public void run() {
                 OrderProducer orderProducer = new OrderProducer();
-
                 for (int i = 0; i < numberOfOrders; i++) {
                     new Thread(orderProducer).start();
                 }

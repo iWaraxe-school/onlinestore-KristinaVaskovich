@@ -3,8 +3,8 @@ package order;
 import lombok.SneakyThrows;
 import store.Store;
 
-public class OrderConsumer extends Thread  {
-    private Order order = new Order(Store.getStore());
+public class OrderConsumer extends Thread {
+    private Order order = Order.getOrder();
 
     @SneakyThrows
     @Override

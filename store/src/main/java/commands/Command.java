@@ -16,5 +16,8 @@ public abstract class Command {
         this.map = map;
     }
 
+    public Command() {
+    }
+
     public abstract void execute();
 }

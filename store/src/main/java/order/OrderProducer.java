@@ -4,7 +4,7 @@ import lombok.SneakyThrows;
 import store.Store;
 
 public class OrderProducer extends Thread {
-    private Order order = new Order(Store.getStore());
+    private Order order = Order.getOrder();
 
     @SneakyThrows
     @Override

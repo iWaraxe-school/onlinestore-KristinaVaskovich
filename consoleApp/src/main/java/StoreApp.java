@@ -1,15 +1,8 @@
-import com.github.javafaker.Faker;
-import commands.Command;
-import commands.CommandExecutor;
-import commands.SortCommand;
-import commands.TopCommand;
-import order.OrderConsumer;
-import order.OrderProducer;
+import commands.*;
 import sorting.XMLParser;
 import store.Store;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Scanner;
 
 public class StoreApp {
     public static void main(String[] args) {
@@ -20,38 +13,39 @@ public class StoreApp {
         XMLParser xmlParser = new XMLParser();
         Map<String, String> xmlParserMap = xmlParser.getMap();
 
-        CommandExecutor commandExecutor = new CommandExecutor();
-        Command sortCommand = new SortCommand("rate", store, xmlParserMap);
-        commandExecutor.setCommand(sortCommand);
-        commandExecutor.printSortedProducts();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter command ( sort top order deleteOrder quit ): ");
+        while (sc.hasNext()) {
+            CommandExecutor commandExecutor = new CommandExecutor();
+            String command = sc.next();
 
-        Command topCommand = new TopCommand("price", store, xmlParserMap);
-        commandExecutor.setCommand(topCommand);
-        commandExecutor.printSortedProducts();
-
-
-        Timer timer = new Timer();
-        int numberOfOrders = 7;
-        final TimerTask timerTask1 = new TimerTask() {
-            @Override
-            public void run() {
-                OrderProducer orderProducer = new OrderProducer();
-                for (int i = 0; i < numberOfOrders; i++) {
-                    new Thread(orderProducer).start();
-                }
+            if (command.equalsIgnoreCase("quit")) {
+                break;
             }
-        };
-        Faker faker = new Faker();
-        timer.schedule(timerTask1, 0, faker.number().numberBetween(1, 30));
 
-        final TimerTask timerTask2 = new TimerTask() {
-            @Override
-            public void run() {
-                OrderConsumer orderConsumer = new OrderConsumer();
-                new Thread(orderConsumer).start();
-                timer.cancel();
+            if (command.equalsIgnoreCase("sort")) {
+                Command sortCommand = new SortCommand("rate", store, xmlParserMap);
+                commandExecutor.setCommand(sortCommand);
+                commandExecutor.execute();
             }
-        };
-        timer.schedule(timerTask2, 0, 120000);
+
+            if (command.equalsIgnoreCase("top")) {
+                Command topCommand = new TopCommand("price", store, xmlParserMap);
+                commandExecutor.setCommand(topCommand);
+                commandExecutor.execute();
+            }
+
+            if (command.equalsIgnoreCase("order")) {
+                Command orderCommand = new CreateOrderCommand();
+                commandExecutor.setCommand(orderCommand);
+                commandExecutor.execute();
+            }
+
+            if (command.equalsIgnoreCase("deleteOrder")) {
+                Command deleteCommand = new DeleteOrdersCommand();
+                commandExecutor.setCommand(deleteCommand);
+                commandExecutor.execute();
+            }
+        }
     }
 }

@@ -3,18 +3,25 @@ package order;
 import lombok.ToString;
 import products.Product;
 import store.Store;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @ToString
 public class Order {
     private Store store = Store.getStore();
+    private static Order order = null;
     private List<Product> productList = store.getAllProducts();
-    private List<Product> listOfOrders = new ArrayList<>();
+    private List<Product> listOfOrders = new CopyOnWriteArrayList<>();
 
-    public Order(Store store) {
-        this.store = store;
+    private Order() {
+    }
+
+    public static Order getOrder() {
+        if (order == null) {
+            order = new Order();
+        }
+        return order;
     }
 
     public List<Product> getListOfOrders() {
@@ -27,13 +34,13 @@ public class Order {
         Product randomElement = productList.get(randomIndex);
         listOfOrders.add(randomElement);
         productList.remove(randomIndex);
-        System.out.println("remove from productlist to orders that product: " + randomElement);
-        System.out.println("orderList: " + getListOfOrders());
+        System.out.println("Remove from productlist to orders that product: " + randomElement);
+        System.out.println("OrderList: " + getListOfOrders());
     }
 
     public synchronized void deleteFromOrderList() {
-        System.out.println("orderlist cleared");
+        System.out.println("OrderList cleared");
         listOfOrders.clear();
-        System.out.println("orderList: " + getListOfOrders());
+        System.out.println("OrderList: " + getListOfOrders());
     }
 }

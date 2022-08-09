@@ -1,8 +1,8 @@
-package order;
+package store;
 
 import lombok.ToString;
 import products.Product;
-import store.Store;
+
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;

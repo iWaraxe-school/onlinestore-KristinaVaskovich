@@ -2,15 +2,19 @@ package commands;
 
 import com.github.javafaker.Faker;
 import lombok.SneakyThrows;
-import order.OrderProducer;
+import store.Order;
 
 public class CreateOrderCommand extends Command {
     @SneakyThrows
     @Override
     public void execute() {
-        OrderProducer orderProducer = new OrderProducer();
+        Thread thread = new Thread(() -> {
+            System.out.printf("%s started... \n", Thread.currentThread().getName());
+            Order.getOrder().putToOrder();
+            System.out.printf("%s finished... \n", Thread.currentThread().getName());
+        });
+        thread.start();
         Faker faker = new Faker();
-        new Thread(orderProducer).start();
         Thread.sleep(faker.number().numberBetween(1, 30));
     }
 }

@@ -1,6 +1,6 @@
 package commands;
 
-import order.OrderConsumer;
+import store.Order;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,8 +11,12 @@ public class DeleteOrdersCommand extends Command {
         final TimerTask timerTask2 = new TimerTask() {
             @Override
             public void run() {
-                OrderConsumer orderConsumer = new OrderConsumer();
-                new Thread(orderConsumer).start();
+                Thread thread = new Thread(() -> {
+                    System.out.printf("%s started... \n", Thread.currentThread().getName());
+                    Order.getOrder().deleteFromOrderList();
+                    System.out.printf("%s finished... \n", Thread.currentThread().getName());
+                });
+                thread.start();
                 timer.cancel();
             }
         };

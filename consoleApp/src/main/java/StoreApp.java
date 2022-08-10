@@ -7,18 +7,18 @@ import java.util.Scanner;
 public class StoreApp {
     public static void main(String[] args) {
         Store store = Store.getStore();
-        store.fillStore(4);
+        store.fillStore(5);
         System.out.println(store);
 
         XMLParser xmlParser = new XMLParser();
         Map<String, String> xmlParserMap = xmlParser.getMap();
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter command ( sort top order deleteOrder quit ): ");
-        while (sc.hasNext()) {
-            CommandExecutor commandExecutor = new CommandExecutor();
-            String command = sc.next();
+        CommandExecutor commandExecutor = new CommandExecutor();
+        System.out.println("Enter command ( sort top order quit ): ");
 
+        while (sc.hasNext()) {
+            String command = sc.next();
             if (command.equalsIgnoreCase("quit")) {
                 break;
             }
@@ -40,12 +40,9 @@ public class StoreApp {
                 commandExecutor.setCommand(orderCommand);
                 commandExecutor.execute();
             }
-
-            if (command.equalsIgnoreCase("deleteOrder")) {
-                Command deleteCommand = new DeleteOrdersCommand();
-                commandExecutor.setCommand(deleteCommand);
-                commandExecutor.execute();
-            }
         }
+        Command deleteCommand = new DeleteOrdersCommand();
+        commandExecutor.setCommand(deleteCommand);
+        commandExecutor.execute();
     }
 }

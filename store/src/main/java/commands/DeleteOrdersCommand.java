@@ -8,7 +8,7 @@ public class DeleteOrdersCommand extends Command {
     @Override
     public void execute() {
         Timer timer = new Timer();
-        final TimerTask timerTask2 = new TimerTask() {
+        final TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 Thread thread = new Thread(() -> {
@@ -17,9 +17,8 @@ public class DeleteOrdersCommand extends Command {
                     System.out.printf("%s finished... \n", Thread.currentThread().getName());
                 });
                 thread.start();
-                timer.cancel();
             }
         };
-        timer.schedule(timerTask2, 0, 120000);
+        timer.schedule(timerTask, 0, 120000);
     }
 }

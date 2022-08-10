@@ -17,6 +17,10 @@ public class StoreApp {
         CommandExecutor commandExecutor = new CommandExecutor();
         System.out.println("Enter command ( sort top order quit ): ");
 
+        Command deleteCommand = new DeleteOrdersCommand();
+        commandExecutor.setCommand(deleteCommand);
+        commandExecutor.execute();
+
         while (sc.hasNext()) {
             String command = sc.next();
             if (command.equalsIgnoreCase("quit")) {
@@ -41,8 +45,5 @@ public class StoreApp {
                 commandExecutor.execute();
             }
         }
-        Command deleteCommand = new DeleteOrdersCommand();
-        commandExecutor.setCommand(deleteCommand);
-        commandExecutor.execute();
     }
 }

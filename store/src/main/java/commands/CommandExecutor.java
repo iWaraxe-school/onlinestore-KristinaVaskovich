@@ -1,13 +1,13 @@
 package commands;
 
 public class CommandExecutor {
-    private Command chooseSortingCommand;
+    private Command chooseCommand;
 
     public void setCommand(Command command) {
-        chooseSortingCommand = command;
+        chooseCommand = command;
     }
 
-    public void printSortedProducts(){
-        chooseSortingCommand.execute();
+    public void execute(){
+        chooseCommand.execute();
     }
 }

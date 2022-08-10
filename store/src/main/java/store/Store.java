@@ -4,9 +4,11 @@ import categories.Category;
 import helpers.RandomCategoryPopulator;
 import helpers.RandomStorePopulator;
 import lombok.Getter;
-
+import products.Product;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class Store {
@@ -36,5 +38,8 @@ public class Store {
         }
     }
 
-
+    public List<Product> getAllProducts() {
+        return Store.getStore().getCategoryList().stream().map(Category::getProducts).
+                flatMap(Collection::stream).collect(Collectors.toList());
+    }
 }

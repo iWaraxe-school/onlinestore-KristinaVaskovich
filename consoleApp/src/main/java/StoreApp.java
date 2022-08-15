@@ -1,17 +1,22 @@
 import commands.*;
+import db.DBConnector;
 import sorting.XMLParser;
 import store.Store;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class StoreApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Store store = Store.getStore();
-        store.fillStore(5);
+        store.fillStore(8);
         System.out.println(store);
 
         XMLParser xmlParser = new XMLParser();
         Map<String, String> xmlParserMap = xmlParser.getMap();
+
+        DBConnector dbConnector = new DBConnector();
+        dbConnector.createAndFillDB();
 
         Scanner sc = new Scanner(System.in);
         CommandExecutor commandExecutor = new CommandExecutor();

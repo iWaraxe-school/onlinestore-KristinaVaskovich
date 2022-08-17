@@ -3,6 +3,7 @@ package db;
 import lombok.SneakyThrows;
 import products.Product;
 import store.Store;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,22 @@ public class DBHelper {
         statement.executeUpdate(createCategoriesTableCommand);
 
         for (int i = 0; i < store.getCategoryList().size(); i++) {
-            String insertIntoCategoriesCommand = "INSERT INTO categories(CategoryName) VALUES('" + store.getCategoryList().get(i).getName() + "')";
-            statement.executeUpdate(insertIntoCategoriesCommand);
+            String insertIntoCategoriesCommand = "INSERT INTO categories(CategoryName) VALUES(?)";
+            PreparedStatement pstmt = connection.prepareStatement(insertIntoCategoriesCommand);
+            pstmt.setString(1, store.getCategoryList().get(i).getName().toString());
+            pstmt.execute();
         }
 
         for (int i = 0; i < store.getCategoryList().size(); i++) {
             String sqlCreateCategoryTableCommand = "CREATE TABLE " + store.getCategoryList().get(i).getName() + "(ProductName VARCHAR(255) NOT NULL, Price INT, Rate INT)";
             statement.executeUpdate(sqlCreateCategoryTableCommand);
             for (int j = 0; j < store.getCategoryList().get(i).getProducts().size(); j++) {
-                String insertIntoCategoryTableCommand = "INSERT INTO " + store.getCategoryList().get(i).getName() + "(ProductName, Price, Rate) VALUES('" + store.getCategoryList().get(i).getProducts().get(j).getName() + "'," +
-                        store.getCategoryList().get(i).getProducts().get(j).getPrice() + "," + store.getCategoryList().get(i).getProducts().get(j).getRate() + ")";
-                statement.executeUpdate(insertIntoCategoryTableCommand);
+                String insertIntoCategoryTableCommand = "INSERT INTO " + store.getCategoryList().get(i).getName() + " (ProductName, Price, Rate) VALUES(?,?,?)";
+                PreparedStatement pstmt = connection.prepareStatement(insertIntoCategoryTableCommand);
+                pstmt.setString(1, store.getCategoryList().get(i).getProducts().get(j).getName());
+                pstmt.setInt(2, store.getCategoryList().get(i).getProducts().get(j).getPrice());
+                pstmt.setInt(3, store.getCategoryList().get(i).getProducts().get(j).getRate());
+                pstmt.execute();
             }
         }
 
@@ -48,9 +54,13 @@ public class DBHelper {
         statement.executeUpdate(sqlCreateAllProductsTableCommand);
         for (int i = 0; i < store.getCategoryList().size(); i++) {
             for (int j = 0; j < store.getCategoryList().get(i).getProducts().size(); j++) {
-                String insertIntoProductsTableCommand = "INSERT INTO products (ProductName, Price, Rate, CategoryName) VALUES('" + store.getCategoryList().get(i).getProducts().get(j).getName() + "'," +
-                        store.getCategoryList().get(i).getProducts().get(j).getPrice() + "," + store.getCategoryList().get(i).getProducts().get(j).getRate() + ", '" + store.getCategoryList().get(i).getName() + "')";
-                statement.executeUpdate(insertIntoProductsTableCommand);
+                String insertIntoProductsTableCommand  = "INSERT INTO products (ProductName, Price, Rate, CategoryName) VALUES(?,?,?,?)";
+                PreparedStatement pstmt = connection.prepareStatement(insertIntoProductsTableCommand);
+                pstmt.setString(1, store.getCategoryList().get(i).getProducts().get(j).getName());
+                pstmt.setInt(2, store.getCategoryList().get(i).getProducts().get(j).getPrice());
+                pstmt.setInt(3, store.getCategoryList().get(i).getProducts().get(j).getRate());
+                pstmt.setString(4, store.getCategoryList().get(i).getName().toString());
+                pstmt.execute();
             }
         }
         closeConnection();

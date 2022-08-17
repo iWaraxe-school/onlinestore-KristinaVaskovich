@@ -57,7 +57,7 @@ public class DBHelper {
     }
 
     @SneakyThrows
-    public List<Product> getProducts() {
+    public List<Product> getAllProductsFromDB() {
         createConnection();
         List<Product> products = new ArrayList<>();
         String sqlGetAllProducts = "Select * From store.products";

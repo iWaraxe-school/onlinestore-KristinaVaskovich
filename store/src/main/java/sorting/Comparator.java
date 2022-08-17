@@ -11,7 +11,7 @@ public class Comparator {
 //        List<Product> productList = store.getCategoryList().stream().map(Category::getProducts).
 //                flatMap(Collection::stream).collect(Collectors.toList());
         DBHelper dbHelper = new DBHelper();
-        List<Product> productList = dbHelper.getProducts();
+        List<Product> productList = dbHelper.getAllProductsFromDB();
         String value = map.get(field);
         try {
             if (value.equalsIgnoreCase("asc")) {

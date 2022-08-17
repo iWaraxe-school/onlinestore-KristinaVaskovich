@@ -2,12 +2,11 @@ import commands.*;
 import db.DBHelper;
 import sorting.XMLParser;
 import store.Store;
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class StoreApp {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args){
         Store store = Store.getStore();
         store.fillStoreWithRandomPopulator(8);
         System.out.println(store);

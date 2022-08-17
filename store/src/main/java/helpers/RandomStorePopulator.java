@@ -9,9 +9,6 @@ import java.util.Set;
 
 public class RandomStorePopulator {
     private static List<Category> categoryArrayList = new ArrayList<>();
-    public static List<Category> getCategoryArrayList() {
-        return categoryArrayList;
-    }
 
     public static List<Category> fillStoreWithCategories() {
         Reflections reflections = new Reflections("categories");

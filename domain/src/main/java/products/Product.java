@@ -1,7 +1,9 @@
 package products;
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 public class Product {
     private int price;
@@ -12,6 +14,9 @@ public class Product {
         this.price = price;
         this.name = name;
         this.rate = rate;
+    }
+
+    public Product(){
     }
 
     @Override

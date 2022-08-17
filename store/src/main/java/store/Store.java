@@ -31,7 +31,7 @@ public class Store {
                 categoryList;
     }
 
-    public void fillStore(int numberOfItemsInCategory) {
+    public void fillStoreWithRandomPopulator(int numberOfItemsInCategory) {
         categoryList = RandomStorePopulator.fillStoreWithCategories();
         for (Category category : categoryList) {
             category.setProducts(RandomCategoryPopulator.fillCategoryWithProducts(category, numberOfItemsInCategory));

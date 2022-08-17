@@ -1,17 +1,17 @@
 package sorting;
 
-import categories.Category;
+import db.DBHelper;
 import products.Product;
 import store.Store;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Comparator {
     public List<Product> sortStore(String field, Store store, Map<String, String> map) {
-        List<Product> productList = store.getCategoryList().stream().map(Category::getProducts).
-                flatMap(Collection::stream).collect(Collectors.toList());
+//        List<Product> productList = store.getCategoryList().stream().map(Category::getProducts).
+//                flatMap(Collection::stream).collect(Collectors.toList());
+        DBHelper dbHelper = new DBHelper();
+        List<Product> productList = dbHelper.getProducts();
         String value = map.get(field);
         try {
             if (value.equalsIgnoreCase("asc")) {

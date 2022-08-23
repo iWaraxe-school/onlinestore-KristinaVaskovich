@@ -1,17 +1,21 @@
 import commands.*;
+import db.DBHelper;
 import sorting.XMLParser;
 import store.Store;
 import java.util.Map;
 import java.util.Scanner;
 
 public class StoreApp {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Store store = Store.getStore();
-        store.fillStore(5);
+        store.fillStoreWithRandomPopulator(8);
         System.out.println(store);
 
         XMLParser xmlParser = new XMLParser();
         Map<String, String> xmlParserMap = xmlParser.getMap();
+
+        DBHelper dbHelper = new DBHelper();
+        dbHelper.fillDB();
 
         Scanner sc = new Scanner(System.in);
         CommandExecutor commandExecutor = new CommandExecutor();

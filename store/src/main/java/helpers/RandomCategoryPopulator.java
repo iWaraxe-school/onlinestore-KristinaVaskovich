@@ -14,11 +14,11 @@ public class RandomCategoryPopulator {
             int randomNumberFrom0To10 = faker.number().numberBetween(0, 10);
             int randomNumberFrom0To100 = faker.number().numberBetween(0, 1000);
             switch (category.getName().toString()) {
-                case "BIKE" ->
+                case "bike" ->
                         products.add(new Product(randomNumberFrom0To100, faker.aviation().aircraft(), randomNumberFrom0To10));
-                case "MILK" ->
+                case "milk" ->
                         products.add(new Product(randomNumberFrom0To100, faker.food().fruit(), randomNumberFrom0To10));
-                case "PHONE" ->
+                case "phone" ->
                         products.add(new Product(randomNumberFrom0To100, faker.hipster().word(), randomNumberFrom0To10));
                 default -> products.add(new Product(randomNumberFrom0To100, null, randomNumberFrom0To10));
             }

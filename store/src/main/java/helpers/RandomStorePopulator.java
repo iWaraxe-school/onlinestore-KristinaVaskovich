@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Set;
 
 public class RandomStorePopulator {
+    private static List<Category> categoryArrayList = new ArrayList<>();
+
     public static List<Category> fillStoreWithCategories() {
-        List<Category> categoryArrayList = new ArrayList<>();
         Reflections reflections = new Reflections("categories");
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
         for (Class<? extends Category> type : subTypes) {

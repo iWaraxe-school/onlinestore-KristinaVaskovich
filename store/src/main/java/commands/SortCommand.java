@@ -4,7 +4,6 @@ import store.Store;
 import java.util.Map;
 
 public class SortCommand extends Command {
-
     public SortCommand(String fieldToSort, Store store, Map<String, String> map) {
         super(fieldToSort,store, map);
     }

@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import commands.*;
 import http.HTTPClient;
 import http.HTTPService;
@@ -19,43 +20,45 @@ public class StoreApp {
 
 //        DBHelper dbHelper = new DBHelper();
 //        dbHelper.fillDB();
-
+        Gson gson=new Gson();
+        String response = gson.toJson(Store.getStore().getAllProducts().stream().findAny().get());
+        System.out.println(response);
         HTTPService httpService = HTTPService.getHTTPService();
         httpService.startHttpServer();
         HTTPClient httpClient = new HTTPClient();
-        httpClient.addToCart(httpClient.getAllProducts().stream().findAny().orElse(null));
+        httpClient.addToCart();
 
-        Scanner sc = new Scanner(System.in);
-        CommandExecutor commandExecutor = new CommandExecutor();
-        System.out.println("Enter command ( sort top order quit ): ");
-
-        Command deleteCommand = new DeleteOrdersCommand();
-        commandExecutor.setCommand(deleteCommand);
-        commandExecutor.execute();
-
-        while (sc.hasNext()) {
-            String command = sc.next();
-            if (command.equalsIgnoreCase("quit")) {
-                break;
-            }
-
-            if (command.equalsIgnoreCase("sort")) {
-                Command sortCommand = new SortCommand("rate", store, xmlParserMap);
-                commandExecutor.setCommand(sortCommand);
-                commandExecutor.execute();
-            }
-
-            if (command.equalsIgnoreCase("top")) {
-                Command topCommand = new TopCommand("price", store, xmlParserMap);
-                commandExecutor.setCommand(topCommand);
-                commandExecutor.execute();
-            }
-
-            if (command.equalsIgnoreCase("order")) {
-                Command orderCommand = new CreateOrderCommand();
-                commandExecutor.setCommand(orderCommand);
-                commandExecutor.execute();
-            }
-        }
+//        Scanner sc = new Scanner(System.in);
+//        CommandExecutor commandExecutor = new CommandExecutor();
+//        System.out.println("Enter command ( sort top order quit ): ");
+//
+//        Command deleteCommand = new DeleteOrdersCommand();
+//        commandExecutor.setCommand(deleteCommand);
+//        commandExecutor.execute();
+//
+//        while (sc.hasNext()) {
+//            String command = sc.next();
+//            if (command.equalsIgnoreCase("quit")) {
+//                break;
+//            }
+//
+//            if (command.equalsIgnoreCase("sort")) {
+//                Command sortCommand = new SortCommand("rate", store, xmlParserMap);
+//                commandExecutor.setCommand(sortCommand);
+//                commandExecutor.execute();
+//            }
+//
+//            if (command.equalsIgnoreCase("top")) {
+//                Command topCommand = new TopCommand("price", store, xmlParserMap);
+//                commandExecutor.setCommand(topCommand);
+//                commandExecutor.execute();
+//            }
+//
+//            if (command.equalsIgnoreCase("order")) {
+//                Command orderCommand = new CreateOrderCommand();
+//                commandExecutor.setCommand(orderCommand);
+//                commandExecutor.execute();
+//            }
+//        }
     }
 }

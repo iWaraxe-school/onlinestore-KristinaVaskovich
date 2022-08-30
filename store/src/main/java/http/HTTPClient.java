@@ -4,6 +4,8 @@ import categories.Category;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import products.Product;
+import store.Store;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -22,7 +24,7 @@ public class HTTPClient {
     }
 
     @SneakyThrows
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(new URI("http://localhost:8080/products"))
@@ -44,14 +46,13 @@ public class HTTPClient {
     }
 
     @SneakyThrows
-    public void addToCart(Product product){
+    public void addToCart() {
         HttpRequest request = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(product)))
+                .POST(HttpRequest.BodyPublishers.ofString(Store.getStore().getAllProducts().stream().findAny().toString()))
                 .uri(new URI("http://localhost:8080/cart"))
-                .header("Content-Type", "application/json")
                 .header("Authorization", getBasicAuthenticationHeader("user", "password"))
+                .header("Content-Type", "application/json")
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
     }
 }

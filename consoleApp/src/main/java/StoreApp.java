@@ -1,12 +1,15 @@
 import commands.*;
-import db.DBHelper;
+import http.HTTPClient;
+import http.HTTPService;
+import products.Product;
 import sorting.XMLParser;
 import store.Store;
+
 import java.util.Map;
 import java.util.Scanner;
 
 public class StoreApp {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Store store = Store.getStore();
         store.fillStoreWithRandomPopulator(8);
         System.out.println(store);
@@ -14,8 +17,13 @@ public class StoreApp {
         XMLParser xmlParser = new XMLParser();
         Map<String, String> xmlParserMap = xmlParser.getMap();
 
-        DBHelper dbHelper = new DBHelper();
-        dbHelper.fillDB();
+//        DBHelper dbHelper = new DBHelper();
+//        dbHelper.fillDB();
+
+        HTTPService httpService = HTTPService.getHTTPService();
+        httpService.startHttpServer();
+        HTTPClient httpClient = new HTTPClient();
+        httpClient.addToCart(httpClient.getAllProducts().stream().findAny().orElse(null));
 
         Scanner sc = new Scanner(System.in);
         CommandExecutor commandExecutor = new CommandExecutor();

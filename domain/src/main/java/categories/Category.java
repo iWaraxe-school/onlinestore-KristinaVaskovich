@@ -2,13 +2,15 @@ package categories;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import products.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 @Setter
 @Getter
-public abstract class Category {
+public class Category {
     private CategoryName name;
     private List<Product> products;
 

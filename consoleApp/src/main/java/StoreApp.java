@@ -19,8 +19,6 @@ public class StoreApp {
 //        DBHelper dbHelper = new DBHelper();
 //        dbHelper.fillDB();
         Gson gson = new Gson();
-        String response = gson.toJson(Store.getStore().getAllProducts().stream().findAny().get());
-        System.out.println(response);
         HTTPService httpService = HTTPService.getHTTPService();
         httpService.startHttpServer();
         HTTPClient httpClient = new HTTPClient();

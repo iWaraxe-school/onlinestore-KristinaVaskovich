@@ -1,12 +1,14 @@
 package helpers;
 
 import categories.Category;
+import lombok.Getter;
 import org.reflections.Reflections;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Getter
 public class RandomStorePopulator {
     private static List<Category> categoryArrayList = new ArrayList<>();
 
